@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Chen - AI Strategy & Systems Consultant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, #f8f9fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        /* Expertise Cards */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .expertise-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .expertise-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .expertise-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-header {
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .project-content {
+            padding: 30px;
+        }
+
+        .project-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Contact */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            padding: 15px 25px;
+            border: 2px solid #e9ecef;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(5deg); }
+            66% { transform: translateY(10px) rotate(-5deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">Alex Chen</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#expertise">Expertise</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        
+        <div class="hero-content">
+            <h1>AI Strategy Consultant</h1>
+            <p class="subtitle">Bridging Technical Innovation & Business Strategy</p>
+            <p class="description">
+                Transforming complex AI/ML systems into strategic business advantages through data-driven insights and scalable implementation frameworks.
+            </p>
+            <a href="#contact" class="cta-button">Let's Collaborate</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">Strategic AI Leadership</h2>
+            <div class="about-content">
+                <div class="about-image">🧠</div>
+                <div class="about-text">
+                    <h3>Combining Deep Technical Expertise with Strategic Vision</h3>
+                    <p>
+                        I specialize in translating cutting-edge AI/ML research into actionable business strategies. With extensive experience in machine learning engineering and systems architecture, I help organizations navigate the complex landscape of AI adoption, from proof-of-concept to enterprise-scale deployment.
+                    </p>
+                    <p>
+                        My approach focuses on building sustainable AI systems that deliver measurable ROI while addressing real-world constraints like data governance, model interpretability, and regulatory compliance. I thrive at the intersection of technical depth and strategic thinking, making complex AI concepts accessible to C-suite executives and technical teams alike.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section id="expertise" class="section">
+        <div class="container">
+            <h2 class="section-title">Core Competencies</h2>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="expertise-icon">🎯</div>
+                    <h3>AI Strategy & Roadmapping</h3>
+                    <p>Developing comprehensive AI adoption strategies, from market analysis to implementation timelines. Expert in identifying high-impact use cases and building business cases for AI investments.</p>
+                </div>
+                
+                <div class="expertise-card">
+                    <div class="expertise-icon">⚙️</div>
+                    <h3>MLOps & Systems Architecture</h3>
+                    <p>Designing scalable ML infrastructure, implementing CI/CD pipelines for model deployment, and establishing monitoring frameworks for production AI systems.</p>
+                </div>
+                
+                <div class="expertise-card">
+                    <div class="expertise-icon">📊</div>
+                    <h3>Data Strategy & Governance</h3>
+                    <p>Building data-driven organizations through strategic data architecture, privacy-preserving analytics, and establishing data quality frameworks at scale.</p>
+                </div>
+                
+                <div class="expertise-card">
+                    <div class="expertise-icon">💼</div>
+                    <h3>Executive AI Advisory</h3>
+                    <p>Translating technical AI capabilities into business value propositions. Experienced in presenting to boards and leading cross-functional AI transformation initiatives.</p>
+                </div>
+                
+                <div class="expertise-card">
+                    <div class="expertise-icon">🔬</div>
+                    <h3>Applied Research & Innovation</h3>
+                    <p>Bridging academic research and practical implementation. Expertise in LLMs, computer vision, and emerging AI paradigms with focus on business applications.</p>
+                </div>
+                
+                <div class="expertise-card">
+                    <div class="expertise-icon">📈</div>
+                    <h3>Performance & ROI Optimization</h3>
+                    <p>Measuring and optimizing AI system performance, establishing KPIs for AI initiatives, and demonstrating quantifiable business impact from AI investments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Strategic Impact</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">🏦</div>
+                    <div class="project-content">
+                        <h3>Financial Services AI Transformation</h3>
+                        <p>Led end-to-end AI strategy for a Fortune 500 bank, implementing risk assessment models that reduced loan defaults by 35% while improving approval times by 60%. Established MLOps practices across 12 business units.</p>
+                        <div class="project-tags">
+                            <span class="tag">Risk Modeling</span>
+                            <span class="tag">MLOps</span>
+                            <span class="tag">Regulatory Compliance</span>
+                            <span class="tag">ROI: $15M</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">🛒</div>
+                    <div class="project-content">
+                        <h3>E-commerce Personalization Platform</h3>
+                        <p>Designed and implemented a real-time recommendation system serving 50M+ users, resulting in 28% increase in conversion rates. Built scalable infrastructure handling 100k+ predictions per second.</p>
+                        <div class="project-tags">
+                            <span class="tag">Recommendation Systems</span>
+                            <span class="tag">Real-time ML</span>
+                            <span class="tag">A/B Testing</span>
+                            <span class="tag">Scale: 50M Users</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">⚕️</div>
+                    <div class="project-content">
+                        <h3>Healthcare AI Ethics Framework</h3>
+                        <p>Developed comprehensive AI governance framework for healthcare consortium, ensuring HIPAA compliance while enabling innovative diagnostic AI applications. Framework adopted by 15+ healthcare organizations.</p>
+                        <div class="project-tags">
+                            <span class="tag">AI Ethics</span>
+                            <span class="tag">Regulatory Strategy</span>
+                            <span class="tag">Healthcare AI</span>
+                            <span class="tag">Industry Standard</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">🏭</div>
+                    <div class="project-content">
+                        <h3>Manufacturing Optimization Suite</h3>
+                        <p>Built predictive maintenance platform reducing downtime by 45% across global manufacturing network. Integrated IoT sensors with ML models to optimize production scheduling and resource allocation.</p>
+                        <div class="project-tags">
+                            <span class="tag">Predictive Maintenance</span>
+                            <span class="tag">IoT Integration</span>
+                            <span class="tag">Operations Research</span>
+                            <span class="tag">Cost Savings: $25M</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">Ready to Transform Your AI Strategy?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 40px;">
+                    Let's discuss how we can turn your AI ambitions into strategic competitive advantages. I'm available for consulting engagements, advisory roles, and strategic partnerships.
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:alex.chen@aistrategist.com" class="contact-link">
+                        <span>📧</span> Email
+                    </a>
+                    <a href="https://linkedin.com/in/alexchen-ai" class="contact-link">
+                        <span>💼</span> LinkedIn
+                    </a>
+                    <a href="https://calendly.com/alexchen-strategy" class="contact-link">
+                        <span>📅</span> Schedule Call
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navigation background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.expertise-card, .project-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Dynamic text animation for hero
+        const roles = ['AI Strategy Consultant', 'ML Systems Architect', 'Technical Product Leader', 'AI Transformation Expert'];
+        let currentRole = 0;
+        
+        setInterval(() => {
+            const heroTitle = document.querySelector('.hero h1');
+            heroTitle.style.opacity = '0';
+            setTimeout(() => {
+                currentRole = (currentRole + 1) % roles.length;
+                heroTitle.textContent = roles[currentRole];
+                heroTitle.style.opacity = '1';
+            }, 300);
+        }, 4000);
+    </script>
+</body>
+</html>
