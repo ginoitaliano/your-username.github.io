@@ -343,7 +343,134 @@
             box-shadow: 0 2px 8px rgba(183, 28, 28, 0.2);
         }
 
-        /* Contact */
+        /* Blog Section */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(183, 28, 28, 0.15);
+            transition: all 0.3s ease;
+            border: 2px solid #FFCDD2;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(183, 28, 28, 0.25);
+            border-color: #E57373;
+        }
+
+        .blog-image {
+            height: 200px;
+            background: linear-gradient(45deg, #B71C1C, #D32F2F, #F44336);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .blog-date {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #B71C1C;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .blog-content {
+            padding: 30px;
+        }
+
+        .blog-category {
+            display: inline-block;
+            background: linear-gradient(45deg, #B71C1C, #D32F2F);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+
+        .blog-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: #B71C1C;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid #FFCDD2;
+        }
+
+        .read-time {
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        .read-more {
+            color: #B71C1C;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: #D32F2F;
+            transform: translateX(3px);
+        }
+
+        .view-all-posts {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .view-all-btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(45deg, #B71C1C, #D32F2F);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(183, 28, 28, 0.3);
+        }
+
+        .view-all-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(183, 28, 28, 0.4);
+            background: linear-gradient(45deg, #D32F2F, #F44336);
+        }
         .contact-content {
             text-align: center;
             max-width: 600px;
@@ -442,6 +569,7 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#expertise">Expertise</a></li>
                     <li><a href="#projects">Projects</a></li>
+                    <li><a href="#blog">Blog</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -456,7 +584,7 @@
         
         <div class="hero-content">
             <h1>AI Strategy Consultant</h1>
-            <p class="subtitle">McKinsey Consultant | Cornell Master of Engineering | Technical Product Leader</p>
+            <p class="subtitle">McKinsey Consultant | Cornell Tech MEng | Technical Product Leader</p>
             <p class="description">
                 Transforming AI/ML research into strategic business value through cross-functional leadership, technical excellence, and global consulting expertise spanning healthcare, manufacturing, and technology sectors.
             </p>
@@ -473,7 +601,7 @@
                 <div class="about-text">
                     <h3>McKinsey-Trained Consultant with Deep Technical Engineering Background</h3>
                     <p>
-                        Graduated with my Master of Engineering in Electrical and Computer Engineering from Cornell, with hands-on experience in Computer Vision, NLP, Deep Learning, and ML Hardware Systems. My unique combination of McKinsey consulting expertise and technical depth positions me at the forefront of AI strategy and implementation.
+                        Currently pursuing my Master of Engineering in Electrical and Computer Engineering at Cornell Tech, with hands-on experience in Computer Vision, NLP, Deep Learning, and ML Hardware Systems. My unique combination of McKinsey consulting expertise and technical depth positions me at the forefront of AI strategy and implementation.
                     </p>
                     <p>
                         At McKinsey, I led AI-driven strategic initiatives across multiple sectors in the Middle East, managing international teams and designing custom engineering solutions. Previously at AbbVie, I drove digital transformation initiatives that improved delivery timelines by 30% and managed complex M&A integrations. I excel at translating technical complexity into strategic business value while managing stakeholders from technical teams to C-suite executives.
@@ -591,6 +719,127 @@
         </div>
     </section>
 
+    <!-- Blog Section -->
+    <section id="blog" class="section">
+        <div class="container">
+            <h2 class="section-title">Latest Insights & Thought Leadership</h2>
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-image">
+                        📊
+                        <div class="blog-date">Dec 2024</div>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">AI Strategy</span>
+                        <h3>The Future of AI in Enterprise: Strategic Implementation Roadmaps</h3>
+                        <p class="blog-excerpt">
+                            Exploring how Fortune 500 companies can navigate the complex landscape of AI adoption, from initial strategy development to full-scale implementation across business units.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="read-time">8 min read</span>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        🧠
+                        <div class="blog-date">Nov 2024</div>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Machine Learning</span>
+                        <h3>MLOps at Scale: Lessons from McKinsey Client Implementations</h3>
+                        <p class="blog-excerpt">
+                            Key insights from deploying machine learning operations frameworks across multiple industries, including healthcare, manufacturing, and financial services.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="read-time">12 min read</span>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        🏥
+                        <div class="blog-date">Oct 2024</div>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Healthcare AI</span>
+                        <h3>Multimodal AI in Healthcare: Beyond Traditional Diagnostics</h3>
+                        <p class="blog-excerpt">
+                            Deep dive into my Cornell Tech research on speech-based Alzheimer's prediction models and the broader implications for healthcare AI applications.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="read-time">10 min read</span>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        🌍
+                        <div class="blog-date">Sep 2024</div>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Global Markets</span>
+                        <h3>AI Investment Trends in Middle Eastern Markets</h3>
+                        <p class="blog-excerpt">
+                            Analysis of emerging AI investment opportunities and strategic considerations for international expansion in MENA region technology sectors.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="read-time">6 min read</span>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        ⚙️
+                        <div class="blog-date">Aug 2024</div>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Technical Leadership</span>
+                        <h3>From Engineer to Executive: Bridging Technical and Strategic Thinking</h3>
+                        <p class="blog-excerpt">
+                            Reflections on transitioning from hands-on engineering roles to strategic consulting, and how technical depth enhances business decision-making.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="read-time">9 min read</span>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        🚀
+                        <div class="blog-date">Jul 2024</div>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Innovation</span>
+                        <h3>Building AI-First Startups: Lessons from VenturEdGo</h3>
+                        <p class="blog-excerpt">
+                            Entrepreneurial insights from co-founding a blockchain technology venture, including fundraising strategies and technical product development.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="read-time">7 min read</span>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+                </div>
+                </article>
+            </div>
+
+            <div class="view-all-posts">
+                <a href="#" class="view-all-btn">View All Posts</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="section">
         <div class="container">
@@ -606,7 +855,7 @@
                     <a href="https://www.linkedin.com/in/sarah-a-4b261a174/" class="contact-link">
                         <span>💼</span> LinkedIn
                     </a>
-                    <a href="https://github.com/ginoitaliano" class="contact-link">
+                    <a href="https://github.com/sarahahmed" class="contact-link">
                         <span>💻</span> GitHub
                     </a>
                 </div>
@@ -657,7 +906,7 @@
         }, observerOptions);
 
         // Observe all cards and sections
-        document.querySelectorAll('.expertise-card, .project-card').forEach(el => {
+        document.querySelectorAll('.expertise-card, .project-card, .blog-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.6s ease';
@@ -665,7 +914,7 @@
         });
 
         // Dynamic text animation for hero
-        const roles = ['McKinsey AI Consultant', 'Cornell MLE Engineer', 'Global Product Leader', 'AI Strategy Expert'];
+        const roles = ['McKinsey AI Consultant', 'Cornell Tech Engineer', 'Global Product Leader', 'AI Strategy Expert'];
         let currentRole = 0;
         
         setInterval(() => {
