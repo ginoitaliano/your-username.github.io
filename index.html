@@ -12,502 +12,405 @@
         }
 
         body {
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: #2c3e50;
-            background: linear-gradient(135deg, #B31B1B 0%, #DC143C 25%, #FF1744 50%, #E53935 75%, #C62828 100%);
+            font-family: 'Georgia', serif;
+            line-height: 1.7;
+            color: #2a2a2a;
+            background: #fafafa;
             overflow-x: hidden;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 40px;
         }
 
-        /* Navigation */
-        .nav {
+        /* Header */
+        .header {
             position: fixed;
             top: 0;
-            width: 100%;
-            background: rgba(220, 20, 60, 0.95);
-            backdrop-filter: blur(20px);
+            left: 0;
+            right: 0;
+            background: rgba(250, 250, 250, 0.95);
+            backdrop-filter: blur(10px);
             z-index: 1000;
-            transition: all 0.3s ease;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(42, 42, 42, 0.08);
         }
 
-        .nav-content {
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-links a {
+            font-size: 18px;
+            font-weight: normal;
+            color: #2a2a2a;
             text-decoration: none;
-            color: white;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.3s ease;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
+        .logo:hover {
+            opacity: 0.6;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #2a2a2a;
+            cursor: pointer;
+            padding: 8px;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            opacity: 0.6;
+        }
+
+        /* Full Screen Menu */
+        .fullscreen-menu {
+            position: fixed;
+            top: 0;
             left: 0;
-            width: 0;
-            height: 2px;
-            background: white;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #FFE0E0;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
+            right: 0;
+            bottom: 0;
+            background: #fafafa;
+            z-index: 2000;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
 
-        .hero-content {
-            z-index: 2;
-            animation: fadeInUp 1s ease-out;
+        .fullscreen-menu.active {
+            opacity: 1;
+            visibility: visible;
         }
 
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: white;
-            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            opacity: 0.95;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .hero .description {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 40px;
-            opacity: 0.9;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(10px);
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        .cta-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* Floating elements */
-        .floating-element {
+        .menu-close {
             position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            top: 30px;
+            right: 40px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #2a2a2a;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
         }
 
-        .floating-element:nth-child(1) {
-            width: 100px;
-            height: 100px;
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
+        .menu-close:hover {
+            opacity: 0.6;
         }
 
-        .floating-element:nth-child(2) {
-            width: 150px;
-            height: 150px;
-            top: 60%;
-            right: 10%;
-            animation-delay: 2s;
+        .menu-items {
+            text-align: center;
         }
 
-        .floating-element:nth-child(3) {
-            width: 80px;
-            height: 80px;
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 4s;
+        .menu-item {
+            display: block;
+            font-size: 48px;
+            color: #2a2a2a;
+            text-decoration: none;
+            margin: 30px 0;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .fullscreen-menu.active .menu-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fullscreen-menu.active .menu-item:nth-child(1) { transition-delay: 0.1s; }
+        .fullscreen-menu.active .menu-item:nth-child(2) { transition-delay: 0.2s; }
+        .fullscreen-menu.active .menu-item:nth-child(3) { transition-delay: 0.3s; }
+        .fullscreen-menu.active .menu-item:nth-child(4) { transition-delay: 0.4s; }
+        .fullscreen-menu.active .menu-item:nth-child(5) { transition-delay: 0.5s; }
+        .fullscreen-menu.active .menu-item:nth-child(6) { transition-delay: 0.6s; }
+
+        .menu-item:hover {
+            opacity: 0.6;
+            transform: translateX(20px);
         }
 
         /* Sections */
         .section {
-            padding: 100px 0;
-            background: #FFEBEE;
+            min-height: 100vh;
+            padding: 120px 0 80px;
+            display: flex;
+            align-items: center;
         }
 
-        .section:nth-child(even) {
-            background: linear-gradient(135deg, #FFCDD2 0%, #FFEBEE 100%);
+        .section-content {
+            width: 100%;
         }
 
-        .section-title {
+        /* Hero */
+        .hero {
             text-align: center;
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 60px;
-            color: #B71C1C;
-            text-shadow: 0 2px 4px rgba(183, 28, 28, 0.2);
+            padding: 200px 0;
         }
 
-        /* About Section */
-        .about-content {
+        .hero h1 {
+            font-size: 72px;
+            font-weight: normal;
+            margin-bottom: 40px;
+            line-height: 1.1;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .hero .subtitle {
+            font-size: 24px;
+            color: #666;
+            margin-bottom: 60px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .hero .description {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 80px;
+            color: #555;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.9s forwards;
+        }
+
+        .cta-link {
+            display: inline-block;
+            font-size: 18px;
+            color: #2a2a2a;
+            text-decoration: none;
+            border-bottom: 1px solid #2a2a2a;
+            padding-bottom: 2px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.2s forwards;
+        }
+
+        .cta-link:hover {
+            opacity: 0.6;
+            transform: translateY(-2px);
+        }
+
+        /* About */
+        .about .section-title {
+            font-size: 48px;
+            font-weight: normal;
+            margin-bottom: 80px;
+            text-align: center;
+        }
+
+        .about-grid {
             display: grid;
             grid-template-columns: 1fr 2fr;
-            gap: 60px;
-            align-items: center;
+            gap: 80px;
+            align-items: start;
         }
 
-        .about-image {
-            width: 300px;
-            height: 300px;
-            border-radius: 20px;
-            background: linear-gradient(45deg, #B71C1C, #D32F2F, #F44336);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 4rem;
-            margin: 0 auto;
-            box-shadow: 0 10px 30px rgba(183, 28, 28, 0.3);
-        }
-
-        .about-text {
-            font-size: 1.1rem;
+        .about-sidebar {
+            font-size: 18px;
+            color: #666;
             line-height: 1.8;
-            color: #1A1A1A;
         }
 
-        .about-text h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #B71C1C;
+        .about-main h3 {
+            font-size: 24px;
+            font-weight: normal;
+            margin-bottom: 30px;
+            color: #2a2a2a;
         }
 
-        /* Expertise Cards */
-        .expertise-grid {
+        .about-main p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Expertise */
+        .expertise .section-title {
+            font-size: 48px;
+            font-weight: normal;
+            margin-bottom: 80px;
+            text-align: center;
+        }
+
+        .expertise-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
+            gap: 60px;
         }
 
-        .expertise-card {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(183, 28, 28, 0.15);
-            transition: all 0.3s ease;
-            border: 2px solid #FFCDD2;
+        .expertise-item {
+            text-align: center;
+            padding: 40px 0;
         }
 
-        .expertise-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(183, 28, 28, 0.25);
-            border-color: #E57373;
-        }
-
-        .expertise-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(45deg, #B71C1C, #D32F2F);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
+        .expertise-item h3 {
+            font-size: 24px;
+            font-weight: normal;
             margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(183, 28, 28, 0.3);
+            color: #2a2a2a;
         }
 
-        .expertise-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: #B71C1C;
-        }
-
-        .expertise-card p {
-            color: #424242;
+        .expertise-item p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.7;
         }
 
         /* Projects */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
+        .projects .section-title {
+            font-size: 48px;
+            font-weight: normal;
+            margin-bottom: 80px;
+            text-align: center;
         }
 
-        .project-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(183, 28, 28, 0.15);
-            transition: all 0.3s ease;
-            border: 2px solid #FFCDD2;
+        .project {
+            margin-bottom: 120px;
+            padding-bottom: 80px;
+            border-bottom: 1px solid rgba(42, 42, 42, 0.1);
         }
 
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(183, 28, 28, 0.25);
-            border-color: #E57373;
+        .project:last-child {
+            border-bottom: none;
         }
 
-        .project-header {
-            height: 200px;
-            background: linear-gradient(45deg, #B71C1C, #D32F2F, #F44336);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
+        .project h3 {
+            font-size: 32px;
+            font-weight: normal;
+            margin-bottom: 30px;
+            color: #2a2a2a;
         }
 
-        .project-content {
-            padding: 30px;
-        }
-
-        .project-content h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: #B71C1C;
-        }
-
-        .project-content p {
-            color: #424242;
+        .project p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 30px;
         }
 
         .project-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-top: 20px;
         }
 
         .tag {
-            background: linear-gradient(45deg, #B71C1C, #D32F2F);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            box-shadow: 0 2px 8px rgba(183, 28, 28, 0.2);
-        }
-
-        /* Blog Section */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .blog-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(183, 28, 28, 0.15);
-            transition: all 0.3s ease;
-            border: 2px solid #FFCDD2;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(183, 28, 28, 0.25);
-            border-color: #E57373;
-        }
-
-        .blog-image {
-            height: 200px;
-            background: linear-gradient(45deg, #B71C1C, #D32F2F, #F44336);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2.5rem;
-            position: relative;
-        }
-
-        .blog-date {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #B71C1C;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .blog-content {
-            padding: 30px;
-        }
-
-        .blog-category {
-            display: inline-block;
-            background: linear-gradient(45deg, #B71C1C, #D32F2F);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 15px;
-        }
-
-        .blog-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: #B71C1C;
-            line-height: 1.4;
-        }
-
-        .blog-excerpt {
+            font-size: 12px;
             color: #666;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 6px 12px;
+            border: 1px solid rgba(42, 42, 42, 0.2);
+            border-radius: 20px;
+        }
+
+        /* Blog */
+        .blog .section-title {
+            font-size: 48px;
+            font-weight: normal;
+            margin-bottom: 80px;
+            text-align: center;
+        }
+
+        .blog-post {
+            margin-bottom: 80px;
+            padding-bottom: 60px;
+            border-bottom: 1px solid rgba(42, 42, 42, 0.1);
+        }
+
+        .blog-post:last-child {
+            border-bottom: none;
         }
 
         .blog-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 20px;
-            border-top: 1px solid #FFCDD2;
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
         }
 
-        .read-time {
-            color: #999;
-            font-size: 0.8rem;
+        .blog-post h3 {
+            font-size: 28px;
+            font-weight: normal;
+            margin-bottom: 20px;
+            color: #2a2a2a;
+            line-height: 1.3;
+        }
+
+        .blog-post p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
         }
 
         .read-more {
-            color: #B71C1C;
+            font-size: 14px;
+            color: #2a2a2a;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: all 0.3s ease;
+            border-bottom: 1px solid #2a2a2a;
+            transition: opacity 0.3s ease;
         }
 
         .read-more:hover {
-            color: #D32F2F;
-            transform: translateX(3px);
+            opacity: 0.6;
         }
 
-        .view-all-posts {
+        /* Contact */
+        .contact {
             text-align: center;
-            margin-top: 50px;
         }
 
-        .view-all-btn {
-            display: inline-block;
-            padding: 15px 35px;
-            background: linear-gradient(45deg, #B71C1C, #D32F2F);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(183, 28, 28, 0.3);
+        .contact .section-title {
+            font-size: 48px;
+            font-weight: normal;
+            margin-bottom: 40px;
         }
 
-        .view-all-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(183, 28, 28, 0.4);
-            background: linear-gradient(45deg, #D32F2F, #F44336);
-        }
-        .contact-content {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-content p {
-            color: #424242;
+        .contact p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 60px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .contact-links {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
+            gap: 40px;
+            flex-wrap: wrap;
         }
 
         .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 16px;
+            color: #2a2a2a;
             text-decoration: none;
-            color: #B71C1C;
-            font-weight: 500;
-            padding: 15px 25px;
-            border: 2px solid #FFCDD2;
-            border-radius: 50px;
+            border-bottom: 1px solid #2a2a2a;
+            padding-bottom: 2px;
             transition: all 0.3s ease;
-            background: white;
         }
 
         .contact-link:hover {
-            background: linear-gradient(45deg, #B71C1C, #D32F2F);
-            color: white;
-            border-color: #B71C1C;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(183, 28, 28, 0.3);
+            opacity: 0.6;
+            transform: translateY(-2px);
         }
 
         /* Animations */
@@ -522,88 +425,109 @@
             }
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-20px) rotate(5deg); }
-            66% { transform: translateY(10px) rotate(-5deg); }
+        /* Scroll Animations */
+        .animate-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+            .container {
+                padding: 0 20px;
+            }
+
+            .header-content {
+                padding: 0 20px;
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 48px;
             }
 
             .hero .subtitle {
-                font-size: 1.2rem;
+                font-size: 18px;
             }
 
-            .about-content {
+            .section-title {
+                font-size: 36px !important;
+            }
+
+            .about-grid {
                 grid-template-columns: 1fr;
-                text-align: center;
+                gap: 40px;
+            }
+
+            .expertise-list {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .menu-item {
+                font-size: 36px;
             }
 
             .contact-links {
                 flex-direction: column;
-                align-items: center;
-            }
-
-            .section-title {
-                font-size: 2rem;
+                gap: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="container">
-            <div class="nav-content">
-                <div class="logo">Sarah Ahmed</div>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#expertise">Expertise</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="#home" class="logo">Sarah Ahmed</a>
+            <button class="menu-toggle">Menu</button>
         </div>
-    </nav>
+    </header>
+
+    <!-- Full Screen Menu -->
+    <div class="fullscreen-menu">
+        <button class="menu-close">×</button>
+        <nav class="menu-items">
+            <a href="#home" class="menu-item">Home</a>
+            <a href="#about" class="menu-item">About</a>
+            <a href="#expertise" class="menu-item">Expertise</a>
+            <a href="#projects" class="menu-item">Projects</a>
+            <a href="#blog" class="menu-item">Writing</a>
+            <a href="#contact" class="menu-item">Contact</a>
+        </nav>
+    </div>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        
-        <div class="hero-content">
-            <h1>AI Strategy Consultant</h1>
-            <p class="subtitle">McKinsey Consultant | Cornell Tech MEng | Technical Product Leader</p>
+    <section id="home" class="section hero">
+        <div class="container">
+            <h1>AI Strategy<br>Consultant</h1>
+            <p class="subtitle">McKinsey Consultant • Cornell Tech MEng • Technical Product Leader</p>
             <p class="description">
                 Transforming AI/ML research into strategic business value through cross-functional leadership, technical excellence, and global consulting expertise spanning healthcare, manufacturing, and technology sectors.
             </p>
-            <a href="#contact" class="cta-button">Let's Collaborate</a>
+            <a href="#contact" class="cta-link">Let's collaborate</a>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section">
+    <section id="about" class="section about">
         <div class="container">
-            <h2 class="section-title">Strategic AI Leadership</h2>
-            <div class="about-content">
-                <div class="about-image">🧠</div>
-                <div class="about-text">
-                    <h3>McKinsey-Trained Consultant with Deep Technical Engineering Background</h3>
-                    <p>
+            <h2 class="section-title animate-in">Strategic AI Leadership</h2>
+            <div class="about-grid">
+                <div class="about-sidebar animate-in">
+                    McKinsey-Trained Consultant with Deep Technical Engineering Background
+                </div>
+                <div class="about-main">
+                    <h3 class="animate-in">Cornell Tech Engineering Meets McKinsey Strategy</h3>
+                    <p class="animate-in">
                         Currently pursuing my Master of Engineering in Electrical and Computer Engineering at Cornell Tech, with hands-on experience in Computer Vision, NLP, Deep Learning, and ML Hardware Systems. My unique combination of McKinsey consulting expertise and technical depth positions me at the forefront of AI strategy and implementation.
                     </p>
-                    <p>
+                    <p class="animate-in">
                         At McKinsey, I led AI-driven strategic initiatives across multiple sectors in the Middle East, managing international teams and designing custom engineering solutions. Previously at AbbVie, I drove digital transformation initiatives that improved delivery timelines by 30% and managed complex M&A integrations. I excel at translating technical complexity into strategic business value while managing stakeholders from technical teams to C-suite executives.
                     </p>
                 </div>
@@ -612,42 +536,36 @@
     </section>
 
     <!-- Expertise Section -->
-    <section id="expertise" class="section">
+    <section id="expertise" class="section expertise">
         <div class="container">
-            <h2 class="section-title">Core Competencies</h2>
-            <div class="expertise-grid">
-                <div class="expertise-card">
-                    <div class="expertise-icon">🎯</div>
+            <h2 class="section-title animate-in">Core Competencies</h2>
+            <div class="expertise-list">
+                <div class="expertise-item animate-in">
                     <h3>AI Strategy & Roadmapping</h3>
                     <p>Developing comprehensive AI adoption strategies, from market analysis to implementation timelines. Expert in identifying high-impact use cases and building business cases for AI investments.</p>
                 </div>
                 
-                <div class="expertise-card">
-                    <div class="expertise-icon">⚙️</div>
+                <div class="expertise-item animate-in">
                     <h3>MLOps & Systems Architecture</h3>
                     <p>Designing scalable ML infrastructure, implementing CI/CD pipelines for model deployment, and establishing monitoring frameworks for production AI systems.</p>
                 </div>
                 
-                <div class="expertise-card">
-                    <div class="expertise-icon">📊</div>
+                <div class="expertise-item animate-in">
                     <h3>Data Strategy & Governance</h3>
                     <p>Building data-driven organizations through strategic data architecture, privacy-preserving analytics, and establishing data quality frameworks at scale.</p>
                 </div>
                 
-                <div class="expertise-card">
-                    <div class="expertise-icon">💼</div>
+                <div class="expertise-item animate-in">
                     <h3>Executive AI Advisory</h3>
                     <p>Translating technical AI capabilities into business value propositions. Experienced in presenting to boards and leading cross-functional AI transformation initiatives.</p>
                 </div>
                 
-                <div class="expertise-card">
-                    <div class="expertise-icon">🔬</div>
+                <div class="expertise-item animate-in">
                     <h3>Applied Research & Innovation</h3>
                     <p>Bridging academic research and practical implementation. Expertise in LLMs, computer vision, and emerging AI paradigms with focus on business applications.</p>
                 </div>
                 
-                <div class="expertise-card">
-                    <div class="expertise-icon">📈</div>
+                <div class="expertise-item animate-in">
                     <h3>Performance & ROI Optimization</h3>
                     <p>Measuring and optimizing AI system performance, establishing KPIs for AI initiatives, and demonstrating quantifiable business impact from AI investments.</p>
                 </div>
@@ -656,215 +574,145 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="section">
+    <section id="projects" class="section projects">
         <div class="container">
-            <h2 class="section-title">Strategic Impact</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-header">🏥</div>
-                    <div class="project-content">
-                        <h3>AbbVie Global AI Transformation</h3>
-                        <p>Led AI-driven digital transformation initiatives at North Chicago manufacturing plant, resulting in 30% improvement in product delivery timelines. Managed merger and acquisition integration, boosting operational efficiency and product delivery by 5x post-implementation.</p>
-                        <div class="project-tags">
-                            <span class="tag">Digital Transformation</span>
-                            <span class="tag">Manufacturing AI</span>
-                            <span class="tag">M&A Integration</span>
-                            <span class="tag">30% Improvement</span>
-                        </div>
-                    </div>
+            <h2 class="section-title animate-in">Strategic Impact</h2>
+            
+            <div class="project animate-in">
+                <h3>AbbVie Global AI Transformation</h3>
+                <p>Led AI-driven digital transformation initiatives at North Chicago manufacturing plant, resulting in 30% improvement in product delivery timelines. Managed merger and acquisition integration, boosting operational efficiency and product delivery by 5x post-implementation.</p>
+                <div class="project-tags">
+                    <span class="tag">Digital Transformation</span>
+                    <span class="tag">Manufacturing AI</span>
+                    <span class="tag">M&A Integration</span>
+                    <span class="tag">30% Improvement</span>
                 </div>
-                
-                <div class="project-card">
-                    <div class="project-header">🌍</div>
-                    <div class="project-content">
-                        <h3>McKinsey Middle East AI Strategy</h3>
-                        <p>Led AI-driven strategic and investing initiatives across multiple sectors in international markets. Acted as client-facing product leader managing teams across time zones while conducting technical due diligence for M&A cases, bridging engineering insight with technology integration.</p>
-                        <div class="project-tags">
-                            <span class="tag">Strategic Consulting</span>
-                            <span class="tag">International Markets</span>
-                            <span class="tag">Technical Due Diligence</span>
-                            <span class="tag">Cross-Border Leadership</span>
-                        </div>
-                    </div>
+            </div>
+            
+            <div class="project animate-in">
+                <h3>McKinsey Middle East AI Strategy</h3>
+                <p>Led AI-driven strategic and investing initiatives across multiple sectors in international markets. Acted as client-facing product leader managing teams across time zones while conducting technical due diligence for M&A cases, bridging engineering insight with technology integration.</p>
+                <div class="project-tags">
+                    <span class="tag">Strategic Consulting</span>
+                    <span class="tag">International Markets</span>
+                    <span class="tag">Technical Due Diligence</span>
+                    <span class="tag">Cross-Border Leadership</span>
                 </div>
-                
-                <div class="project-card">
-                    <div class="project-header">🧠</div>
-                    <div class="project-content">
-                        <h3>Multimodal AI for Healthcare</h3>
-                        <p>Developed cutting-edge multimodal machine learning model for Alzheimer's prediction using advanced speech analysis techniques. Combined expertise in NLP, computer vision, and healthcare applications to create innovative diagnostic solutions.</p>
-                        <div class="project-tags">
-                            <span class="tag">Healthcare AI</span>
-                            <span class="tag">Multimodal ML</span>
-                            <span class="tag">Speech Analysis</span>
-                            <span class="tag">Cornell Research</span>
-                        </div>
-                    </div>
+            </div>
+            
+            <div class="project animate-in">
+                <h3>Multimodal AI for Healthcare</h3>
+                <p>Developed cutting-edge multimodal machine learning model for Alzheimer's prediction using advanced speech analysis techniques. Combined expertise in NLP, computer vision, and healthcare applications to create innovative diagnostic solutions.</p>
+                <div class="project-tags">
+                    <span class="tag">Healthcare AI</span>
+                    <span class="tag">Multimodal ML</span>
+                    <span class="tag">Speech Analysis</span>
+                    <span class="tag">Cornell Research</span>
                 </div>
-                
-                <div class="project-card">
-                    <div class="project-header">🚀</div>
-                    <div class="project-content">
-                        <h3>VenturEdGo Technology Venture</h3>
-                        <p>Co-founded and served as Technology Manager for Milwaukee-area tech venture, securing $5,000 in seed funding. Accelerated blockchain-driven distributed ledger solutions introduction, attracting Chicago tech infrastructure interest and faculty support.</p>
-                        <div class="project-tags">
-                            <span class="tag">Entrepreneurship</span>
-                            <span class="tag">Blockchain Technology</span>
-                            <span class="tag">Venture Funding</span>
-                            <span class="tag">Tech Leadership</span>
-                        </div>
-                    </div>
+            </div>
+            
+            <div class="project animate-in">
+                <h3>VenturEdGo Technology Venture</h3>
+                <p>Co-founded and served as Technology Manager for Milwaukee-area tech venture, securing $5,000 in seed funding. Accelerated blockchain-driven distributed ledger solutions introduction, attracting Chicago tech infrastructure interest and faculty support.</p>
+                <div class="project-tags">
+                    <span class="tag">Entrepreneurship</span>
+                    <span class="tag">Blockchain Technology</span>
+                    <span class="tag">Venture Funding</span>
+                    <span class="tag">Tech Leadership</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Blog Section -->
-    <section id="blog" class="section">
+    <section id="blog" class="section blog">
         <div class="container">
-            <h2 class="section-title">Latest Insights & Thought Leadership</h2>
-            <div class="blog-grid">
-                <article class="blog-card">
-                    <div class="blog-image">
-                        📊
-                        <div class="blog-date">Dec 2024</div>
-                    </div>
-                    <div class="blog-content">
-                        <span class="blog-category">AI Strategy</span>
-                        <h3>The Future of AI in Enterprise: Strategic Implementation Roadmaps</h3>
-                        <p class="blog-excerpt">
-                            Exploring how Fortune 500 companies can navigate the complex landscape of AI adoption, from initial strategy development to full-scale implementation across business units.
-                        </p>
-                        <div class="blog-meta">
-                            <span class="read-time">8 min read</span>
-                            <a href="#" class="read-more">Read More →</a>
-                        </div>
-                    </div>
-                </article>
+            <h2 class="section-title animate-in">Latest Insights</h2>
+            
+            <article class="blog-post animate-in">
+                <div class="blog-meta">AI Strategy • Dec 2024</div>
+                <h3>The Future of AI in Enterprise: Strategic Implementation Roadmaps</h3>
+                <p>Exploring how Fortune 500 companies can navigate the complex landscape of AI adoption, from initial strategy development to full-scale implementation across business units.</p>
+                <a href="#" class="read-more">Read more</a>
+            </article>
 
-                <article class="blog-card">
-                    <div class="blog-image">
-                        🧠
-                        <div class="blog-date">Nov 2024</div>
-                    </div>
-                    <div class="blog-content">
-                        <span class="blog-category">Machine Learning</span>
-                        <h3>MLOps at Scale: Lessons from McKinsey Client Implementations</h3>
-                        <p class="blog-excerpt">
-                            Key insights from deploying machine learning operations frameworks across multiple industries, including healthcare, manufacturing, and financial services.
-                        </p>
-                        <div class="blog-meta">
-                            <span class="read-time">12 min read</span>
-                            <a href="#" class="read-more">Read More →</a>
-                        </div>
-                    </div>
-                </article>
+            <article class="blog-post animate-in">
+                <div class="blog-meta">Machine Learning • Nov 2024</div>
+                <h3>MLOps at Scale: Lessons from McKinsey Client Implementations</h3>
+                <p>Key insights from deploying machine learning operations frameworks across multiple industries, including healthcare, manufacturing, and financial services.</p>
+                <a href="#" class="read-more">Read more</a>
+            </article>
 
-                <article class="blog-card">
-                    <div class="blog-image">
-                        🏥
-                        <div class="blog-date">Oct 2024</div>
-                    </div>
-                    <div class="blog-content">
-                        <span class="blog-category">Healthcare AI</span>
-                        <h3>Multimodal AI in Healthcare: Beyond Traditional Diagnostics</h3>
-                        <p class="blog-excerpt">
-                            Deep dive into my Cornell Tech research on speech-based Alzheimer's prediction models and the broader implications for healthcare AI applications.
-                        </p>
-                        <div class="blog-meta">
-                            <span class="read-time">10 min read</span>
-                            <a href="#" class="read-more">Read More →</a>
-                        </div>
-                    </div>
-                </article>
+            <article class="blog-post animate-in">
+                <div class="blog-meta">Healthcare AI • Oct 2024</div>
+                <h3>Multimodal AI in Healthcare: Beyond Traditional Diagnostics</h3>
+                <p>Deep dive into my Cornell Tech research on speech-based Alzheimer's prediction models and the broader implications for healthcare AI applications.</p>
+                <a href="#" class="read-more">Read more</a>
+            </article>
 
-                <article class="blog-card">
-                    <div class="blog-image">
-                        🌍
-                        <div class="blog-date">Sep 2024</div>
-                    </div>
-                    <div class="blog-content">
-                        <span class="blog-category">Global Markets</span>
-                        <h3>AI Investment Trends in Middle Eastern Markets</h3>
-                        <p class="blog-excerpt">
-                            Analysis of emerging AI investment opportunities and strategic considerations for international expansion in MENA region technology sectors.
-                        </p>
-                        <div class="blog-meta">
-                            <span class="read-time">6 min read</span>
-                            <a href="#" class="read-more">Read More →</a>
-                        </div>
-                    </div>
-                </article>
+            <article class="blog-post animate-in">
+                <div class="blog-meta">Global Markets • Sep 2024</div>
+                <h3>AI Investment Trends in Middle Eastern Markets</h3>
+                <p>Analysis of emerging AI investment opportunities and strategic considerations for international expansion in MENA region technology sectors.</p>
+                <a href="#" class="read-more">Read more</a>
+            </article>
 
-                <article class="blog-card">
-                    <div class="blog-image">
-                        ⚙️
-                        <div class="blog-date">Aug 2024</div>
-                    </div>
-                    <div class="blog-content">
-                        <span class="blog-category">Technical Leadership</span>
-                        <h3>From Engineer to Executive: Bridging Technical and Strategic Thinking</h3>
-                        <p class="blog-excerpt">
-                            Reflections on transitioning from hands-on engineering roles to strategic consulting, and how technical depth enhances business decision-making.
-                        </p>
-                        <div class="blog-meta">
-                            <span class="read-time">9 min read</span>
-                            <a href="#" class="read-more">Read More →</a>
-                        </div>
-                    </div>
-                </article>
+            <article class="blog-post animate-in">
+                <div class="blog-meta">Technical Leadership • Aug 2024</div>
+                <h3>From Engineer to Executive: Bridging Technical and Strategic Thinking</h3>
+                <p>Reflections on transitioning from hands-on engineering roles to strategic consulting, and how technical depth enhances business decision-making.</p>
+                <a href="#" class="read-more">Read more</a>
+            </article>
 
-                <article class="blog-card">
-                    <div class="blog-image">
-                        🚀
-                        <div class="blog-date">Jul 2024</div>
-                    </div>
-                    <div class="blog-content">
-                        <span class="blog-category">Innovation</span>
-                        <h3>Building AI-First Startups: Lessons from VenturEdGo</h3>
-                        <p class="blog-excerpt">
-                            Entrepreneurial insights from co-founding a blockchain technology venture, including fundraising strategies and technical product development.
-                        </p>
-                        <div class="blog-meta">
-                            <span class="read-time">7 min read</span>
-                            <a href="#" class="read-more">Read More →</a>
-                        </div>
-                    </div>
-                </div>
-                </article>
-            </div>
-
-            <div class="view-all-posts">
-                <a href="#" class="view-all-btn">View All Posts</a>
-            </div>
+            <article class="blog-post animate-in">
+                <div class="blog-meta">Innovation • Jul 2024</div>
+                <h3>Building AI-First Startups: Lessons from VenturEdGo</h3>
+                <p>Entrepreneurial insights from co-founding a blockchain technology venture, including fundraising strategies and technical product development.</p>
+                <a href="#" class="read-more">Read more</a>
+            </article>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section">
+    <section id="contact" class="section contact">
         <div class="container">
-            <div class="contact-content">
-                <h2 class="section-title">Ready to Transform Your AI Strategy?</h2>
-                <p style="font-size: 1.2rem; margin-bottom: 40px;">
-                    Let's discuss how we can turn your AI ambitions into strategic competitive advantages. I'm available for consulting engagements, advisory roles, and strategic partnerships.
-                </p>
-                <div class="contact-links">
-                    <a href="mailto:sarahroseamato@gmail.com" class="contact-link">
-                        <span>📧</span> Email
-                    </a>
-                    <a href="https://www.linkedin.com/in/sarah-a-4b261a174/" class="contact-link">
-                        <span>💼</span> LinkedIn
-                    </a>
-                    <a href="https://github.com/sarahahmed" class="contact-link">
-                        <span>💻</span> GitHub
-                    </a>
-                </div>
+            <h2 class="section-title animate-in">Ready to Transform Your AI Strategy?</h2>
+            <p class="animate-in">
+                Let's discuss how we can turn your AI ambitions into strategic competitive advantages. I'm available for consulting engagements, advisory roles, and strategic partnerships.
+            </p>
+            <div class="contact-links animate-in">
+                <a href="mailto:sarahroseamato@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/sarah-a-4b261a174/" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/sarahahmed" class="contact-link">GitHub</a>
             </div>
         </div>
     </section>
 
     <script>
-        // Smooth scrolling for navigation links
+        // Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const menuClose = document.querySelector('.menu-close');
+        const fullscreenMenu = document.querySelector('.fullscreen-menu');
+        const menuItems = document.querySelectorAll('.menu-item');
+
+        function openMenu() {
+            fullscreenMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            fullscreenMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', closeMenu);
+        });
+
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -878,19 +726,7 @@
             });
         });
 
-        // Navigation background on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.nav');
-            if (window.scrollY > 50) {
-                nav.style.background = 'rgba(220, 20, 60, 0.98)';
-                nav.style.boxShadow = '0 5px 20px rgba(183, 28, 28, 0.3)';
-            } else {
-                nav.style.background = 'rgba(220, 20, 60, 0.95)';
-                nav.style.boxShadow = 'none';
-            }
-        });
-
-        // Intersection Observer for animations
+        // Scroll animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -899,33 +735,24 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
 
-        // Observe all cards and sections
-        document.querySelectorAll('.expertise-card, .project-card, .blog-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
+        document.querySelectorAll('.animate-in').forEach(el => {
             observer.observe(el);
         });
 
-        // Dynamic text animation for hero
-        const roles = ['McKinsey AI Consultant', 'Cornell Tech Engineer', 'Global Product Leader', 'AI Strategy Expert'];
-        let currentRole = 0;
-        
-        setInterval(() => {
-            const heroTitle = document.querySelector('.hero h1');
-            heroTitle.style.opacity = '0';
-            setTimeout(() => {
-                currentRole = (currentRole + 1) % roles.length;
-                heroTitle.textContent = roles[currentRole];
-                heroTitle.style.opacity = '1';
-            }, 300);
-        }, 4000);
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(250, 250, 250, 0.98)';
+            } else {
+                header.style.background = 'rgba(250, 250, 250, 0.95)';
+            }
+        });
     </script>
 </body>
 </html>
